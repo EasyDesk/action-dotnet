@@ -1,0 +1,22 @@
+name: .Net Build
+description: Builds a .NET solution or project
+
+branding:
+  color: green
+  icon: terminal
+
+inputs:
+  script:
+    description: List of commands to run with dotnet cli.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run script with dotnet
+      env:
+        DOTNET_NOLOGO: 'true'
+        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+      shell: bash
+      run: ${{ inputs.script }}
